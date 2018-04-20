@@ -30,7 +30,7 @@
           </ValueRestriction>
         </Restrictions>
       </Property>
-      <Property Name="CC0" Type="int16" SupportRTPCType="Exclusive" DisplayName="CC 0" DisplayGroup="CC">
+      <Property Name="CC0" Type="int16" SupportRTPCType="Exclusive" ForceRTPCCurveSegmentShape="Constant" DisplayName="CC 0" DisplayGroup="CC">
         <UserInterface Step="1" Fine="1"/>
         <DefaultValue>1</DefaultValue>
         <AudioEnginePropertyID>1</AudioEnginePropertyID>
@@ -43,7 +43,7 @@
           </ValueRestriction>
         </Restrictions>
       </Property>
-      <Property Name="CC1" Type="int16" SupportRTPCType="Exclusive" DisplayName="CC 1" DisplayGroup="CC">
+      <Property Name="CC1" Type="int16" SupportRTPCType="Exclusive" ForceRTPCCurveSegmentShape="Constant" DisplayName="CC 1" DisplayGroup="CC">
         <UserInterface Step="1" Fine="1"/>
         <DefaultValue>1</DefaultValue>
         <AudioEnginePropertyID>2</AudioEnginePropertyID>
@@ -56,7 +56,7 @@
           </ValueRestriction>
         </Restrictions>
       </Property>
-      <Property Name="CC2" Type="int16" SupportRTPCType="Exclusive" DisplayName="CC 2" DisplayGroup="CC">
+      <Property Name="CC2" Type="int16" SupportRTPCType="Exclusive" ForceRTPCCurveSegmentShape="Constant" DisplayName="CC 2" DisplayGroup="CC">
         <UserInterface Step="1" Fine="1"/>
         <DefaultValue>1</DefaultValue>
         <AudioEnginePropertyID>3</AudioEnginePropertyID>
@@ -69,7 +69,7 @@
           </ValueRestriction>
         </Restrictions>
       </Property>
-      <Property Name="CC3" Type="int16" SupportRTPCType="Exclusive" DisplayName="CC 3" DisplayGroup="CC">
+      <Property Name="CC3" Type="int16" SupportRTPCType="Exclusive" ForceRTPCCurveSegmentShape="Constant" DisplayName="CC 3" DisplayGroup="CC">
         <UserInterface Step="1" Fine="1"/>
         <DefaultValue>1</DefaultValue>
         <AudioEnginePropertyID>4</AudioEnginePropertyID>
@@ -82,7 +82,7 @@
           </ValueRestriction>
         </Restrictions>
       </Property>
-      <Property Name="CC4" Type="int16" SupportRTPCType="Exclusive" DisplayName="CC 4" DisplayGroup="CC">
+      <Property Name="CC4" Type="int16" SupportRTPCType="Exclusive" ForceRTPCCurveSegmentShape="Constant" DisplayName="CC 4" DisplayGroup="CC">
         <UserInterface Step="1" Fine="1"/>
         <DefaultValue>1</DefaultValue>
         <AudioEnginePropertyID>5</AudioEnginePropertyID>
@@ -95,7 +95,7 @@
           </ValueRestriction>
         </Restrictions>
       </Property>
-      <Property Name="CC5" Type="int16" SupportRTPCType="Exclusive" DisplayName="CC 5" DisplayGroup="CC">
+      <Property Name="CC5" Type="int16" SupportRTPCType="Exclusive" ForceRTPCCurveSegmentShape="Constant" DisplayName="CC 5" DisplayGroup="CC">
         <UserInterface Step="1" Fine="1"/>
         <DefaultValue>1</DefaultValue>
         <AudioEnginePropertyID>6</AudioEnginePropertyID>
@@ -108,7 +108,7 @@
           </ValueRestriction>
         </Restrictions>
       </Property>
-      <Property Name="CC6" Type="int16" SupportRTPCType="Exclusive" DisplayName="CC 6" DisplayGroup="CC">
+      <Property Name="CC6" Type="int16" SupportRTPCType="Exclusive" ForceRTPCCurveSegmentShape="Constant" DisplayName="CC 6" DisplayGroup="CC">
         <UserInterface Step="1" Fine="1"/>
         <DefaultValue>1</DefaultValue>
         <AudioEnginePropertyID>7</AudioEnginePropertyID>
@@ -121,7 +121,7 @@
           </ValueRestriction>
         </Restrictions>
       </Property>
-      <Property Name="CC7" Type="int16" SupportRTPCType="Exclusive" DisplayName="CC 7" DisplayGroup="CC">
+      <Property Name="CC7" Type="int16" SupportRTPCType="Exclusive" ForceRTPCCurveSegmentShape="Constant" DisplayName="CC 7" DisplayGroup="CC">
         <UserInterface Step="1" Fine="1"/>
         <DefaultValue>1</DefaultValue>
         <AudioEnginePropertyID>8</AudioEnginePropertyID>
@@ -134,7 +134,7 @@
           </ValueRestriction>
         </Restrictions>
       </Property>
-      <Property Name="CC8" Type="int16" SupportRTPCType="Exclusive" DisplayName="CC 8" DisplayGroup="CC">
+      <Property Name="CC8" Type="int16" SupportRTPCType="Exclusive" ForceRTPCCurveSegmentShape="Constant" DisplayName="CC 8" DisplayGroup="CC">
         <UserInterface Step="1" Fine="1"/>
         <DefaultValue>1</DefaultValue>
         <AudioEnginePropertyID>9</AudioEnginePropertyID>
@@ -147,7 +147,7 @@
           </ValueRestriction>
         </Restrictions>
       </Property>
-      <Property Name="CC9" Type="int16" SupportRTPCType="Exclusive" DisplayName="CC 9" DisplayGroup="CC">
+      <Property Name="CC9" Type="int16" SupportRTPCType="Exclusive" ForceRTPCCurveSegmentShape="Constant" DisplayName="CC 9" DisplayGroup="CC">
         <UserInterface Step="1" Fine="1"/>
         <DefaultValue>1</DefaultValue>
         <AudioEnginePropertyID>10</AudioEnginePropertyID>
@@ -160,7 +160,7 @@
           </ValueRestriction>
         </Restrictions>
       </Property>
-      <Property Name="CC10" Type="int16" SupportRTPCType="Exclusive" DisplayName="CC 10" DisplayGroup="CC">
+      <Property Name="CC10" Type="int16" SupportRTPCType="Exclusive" ForceRTPCCurveSegmentShape="Constant" DisplayName="CC 10" DisplayGroup="CC">
         <UserInterface Step="1" Fine="1"/>
         <DefaultValue>1</DefaultValue>
         <AudioEnginePropertyID>11</AudioEnginePropertyID>
@@ -173,7 +173,7 @@
           </ValueRestriction>
         </Restrictions>
       </Property>
-      <Property Name="CC11" Type="int16" SupportRTPCType="Exclusive" DisplayName="CC 11" DisplayGroup="CC">
+      <Property Name="CC11" Type="int16" SupportRTPCType="Exclusive" ForceRTPCCurveSegmentShape="Constant" DisplayName="CC 11" DisplayGroup="CC">
         <UserInterface Step="1" Fine="1"/>
         <DefaultValue>1</DefaultValue>
         <AudioEnginePropertyID>12</AudioEnginePropertyID>
@@ -186,7 +186,7 @@
           </ValueRestriction>
         </Restrictions>
       </Property>
-      <Property Name="CC12" Type="int16" SupportRTPCType="Exclusive" DisplayName="CC 12" DisplayGroup="CC">
+      <Property Name="CC12" Type="int16" SupportRTPCType="Exclusive" ForceRTPCCurveSegmentShape="Constant" DisplayName="CC 12" DisplayGroup="CC">
         <UserInterface Step="1" Fine="1"/>
         <DefaultValue>1</DefaultValue>
         <AudioEnginePropertyID>13</AudioEnginePropertyID>
@@ -199,7 +199,7 @@
           </ValueRestriction>
         </Restrictions>
       </Property>
-      <Property Name="CC13" Type="int16" SupportRTPCType="Exclusive" DisplayName="CC 13" DisplayGroup="CC">
+      <Property Name="CC13" Type="int16" SupportRTPCType="Exclusive" ForceRTPCCurveSegmentShape="Constant" DisplayName="CC 13" DisplayGroup="CC">
         <UserInterface Step="1" Fine="1"/>
         <DefaultValue>1</DefaultValue>
         <AudioEnginePropertyID>14</AudioEnginePropertyID>
@@ -212,7 +212,7 @@
           </ValueRestriction>
         </Restrictions>
       </Property>
-      <Property Name="CC14" Type="int16" SupportRTPCType="Exclusive" DisplayName="CC 14" DisplayGroup="CC">
+      <Property Name="CC14" Type="int16" SupportRTPCType="Exclusive" ForceRTPCCurveSegmentShape="Constant" DisplayName="CC 14" DisplayGroup="CC">
         <UserInterface Step="1" Fine="1"/>
         <DefaultValue>1</DefaultValue>
         <AudioEnginePropertyID>15</AudioEnginePropertyID>
@@ -225,7 +225,7 @@
           </ValueRestriction>
         </Restrictions>
       </Property>
-      <Property Name="CC15" Type="int16" SupportRTPCType="Exclusive" DisplayName="CC 15" DisplayGroup="CC">
+      <Property Name="CC15" Type="int16" SupportRTPCType="Exclusive" ForceRTPCCurveSegmentShape="Constant" DisplayName="CC 15" DisplayGroup="CC">
         <UserInterface Step="1" Fine="1"/>
         <DefaultValue>1</DefaultValue>
         <AudioEnginePropertyID>16</AudioEnginePropertyID>
