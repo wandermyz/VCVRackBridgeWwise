@@ -37,7 +37,7 @@
         <Restrictions>
           <ValueRestriction>
             <Range Type="int16">
-              <Min>1</Min>
+              <Min>0</Min>
               <Max>127</Max>
             </Range>
           </ValueRestriction>
@@ -50,7 +50,7 @@
         <Restrictions>
           <ValueRestriction>
             <Range Type="int16">
-              <Min>1</Min>
+              <Min>0</Min>
               <Max>127</Max>
             </Range>
           </ValueRestriction>
@@ -63,7 +63,7 @@
         <Restrictions>
           <ValueRestriction>
             <Range Type="int16">
-              <Min>1</Min>
+              <Min>0</Min>
               <Max>127</Max>
             </Range>
           </ValueRestriction>
@@ -76,7 +76,7 @@
         <Restrictions>
           <ValueRestriction>
             <Range Type="int16">
-              <Min>1</Min>
+              <Min>0</Min>
               <Max>127</Max>
             </Range>
           </ValueRestriction>
@@ -89,7 +89,7 @@
         <Restrictions>
           <ValueRestriction>
             <Range Type="int16">
-              <Min>1</Min>
+              <Min>0</Min>
               <Max>127</Max>
             </Range>
           </ValueRestriction>
@@ -102,7 +102,7 @@
         <Restrictions>
           <ValueRestriction>
             <Range Type="int16">
-              <Min>1</Min>
+              <Min>0</Min>
               <Max>127</Max>
             </Range>
           </ValueRestriction>
@@ -115,7 +115,7 @@
         <Restrictions>
           <ValueRestriction>
             <Range Type="int16">
-              <Min>1</Min>
+              <Min>0</Min>
               <Max>127</Max>
             </Range>
           </ValueRestriction>
@@ -128,7 +128,7 @@
         <Restrictions>
           <ValueRestriction>
             <Range Type="int16">
-              <Min>1</Min>
+              <Min>0</Min>
               <Max>127</Max>
             </Range>
           </ValueRestriction>
@@ -141,7 +141,7 @@
         <Restrictions>
           <ValueRestriction>
             <Range Type="int16">
-              <Min>1</Min>
+              <Min>0</Min>
               <Max>127</Max>
             </Range>
           </ValueRestriction>
@@ -154,7 +154,7 @@
         <Restrictions>
           <ValueRestriction>
             <Range Type="int16">
-              <Min>1</Min>
+              <Min>0</Min>
               <Max>127</Max>
             </Range>
           </ValueRestriction>
@@ -167,7 +167,7 @@
         <Restrictions>
           <ValueRestriction>
             <Range Type="int16">
-              <Min>1</Min>
+              <Min>0</Min>
               <Max>127</Max>
             </Range>
           </ValueRestriction>
@@ -180,7 +180,7 @@
         <Restrictions>
           <ValueRestriction>
             <Range Type="int16">
-              <Min>1</Min>
+              <Min>0</Min>
               <Max>127</Max>
             </Range>
           </ValueRestriction>
@@ -193,7 +193,7 @@
         <Restrictions>
           <ValueRestriction>
             <Range Type="int16">
-              <Min>1</Min>
+              <Min>0</Min>
               <Max>127</Max>
             </Range>
           </ValueRestriction>
@@ -206,7 +206,7 @@
         <Restrictions>
           <ValueRestriction>
             <Range Type="int16">
-              <Min>1</Min>
+              <Min>0</Min>
               <Max>127</Max>
             </Range>
           </ValueRestriction>
@@ -219,7 +219,7 @@
         <Restrictions>
           <ValueRestriction>
             <Range Type="int16">
-              <Min>1</Min>
+              <Min>0</Min>
               <Max>127</Max>
             </Range>
           </ValueRestriction>
@@ -232,7 +232,7 @@
         <Restrictions>
           <ValueRestriction>
             <Range Type="int16">
-              <Min>1</Min>
+              <Min>0</Min>
               <Max>127</Max>
             </Range>
           </ValueRestriction>
