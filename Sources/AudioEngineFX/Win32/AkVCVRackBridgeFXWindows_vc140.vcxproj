@@ -713,7 +713,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\AkVCVRackBridgeFX.h" />
-    <ClInclude Include="..\AkDelayFXDSP.h" />
     <ClInclude Include="..\AkDelayFXParams.h" />
     <ClInclude Include="..\..\..\..\..\..\include\AK\Plugin\AkVCVRackBridgeFXFactory.h" />
     <ClInclude Include="..\..\..\..\..\..\include\AK\Plugin\PluginServices\AkFXTailHandler.h" />
@@ -721,8 +720,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\AkVCVRackBridgeFX.cpp">
-    </ClCompile>
-    <ClCompile Include="..\AkDelayFXDSP.cpp">
     </ClCompile>
     <ClCompile Include="..\AkDelayFXParams.cpp">
     </ClCompile>

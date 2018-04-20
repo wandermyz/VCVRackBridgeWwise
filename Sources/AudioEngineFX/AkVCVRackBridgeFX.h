@@ -24,7 +24,6 @@ written agreement between you and Audiokinetic Inc.
 #define _AK_DELAYFX_H_
 
 #include "AkDelayFXParams.h"
-#include "AkDelayFXDSP.h"
 
 struct BridgeClient;
 
@@ -82,7 +81,6 @@ public:
 private:
 
 	/// Cached information
-	CAkDelayFXDSP			m_FXState;		/// Internal effect state
     CAkDelayFXParams *		m_pParams;		/// Effect parameter node
 	AK::IAkPluginMemAlloc * m_pAllocator;	/// Memory allocator interface
 };

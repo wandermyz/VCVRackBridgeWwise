@@ -27,39 +27,33 @@ written agreement between you and Audiokinetic Inc.
 
 // Parameters IDs for the Wwise or RTPC.
 // Those IDs map to the AudioEnginePropertyID attributes in the XML property definition
-static const AkPluginParamID AK_DELAYFXPARAM_DELAYTIME_ID			= 0;
-static const AkPluginParamID AK_DELAYFXPARAM_FEEDBACK_ID			= 1;	// RTPC
-static const AkPluginParamID AK_DELAYFXPARAM_WETDRYMIX_ID			= 2;	// RTPC
-static const AkPluginParamID AK_DELAYFXPARAM_OUTPUTGAIN_ID			= 3;	// RTPC
-static const AkPluginParamID AK_DELAYFXPARAM_FEEDBACKENABLED_ID		= 4;	// RTPC
-static const AkPluginParamID AK_DELAYFXPARAM_PROCESSLFE_ID			= 5;	
-
-static const AkPluginParamID AK_DELAYFXPARAM_NUM					= 6;
+static const AkPluginParamID AK_DELAYFXPARAM_PORT_ID                = 0;
+static const AkPluginParamID AK_DELAYFXPARAM_CC0_ID			        = 1;	// RTPC
+static const int RACK_CC_COUNT = 16;
+static const AkPluginParamID AK_DELAYFXPARAM_NUM					= 17;
 
 // Default parameter values
-#define DELAYFXPARAM_DELAYTIME_DEF			(0.5f)		// secs
-#define DELAYFXPARAM_FEEDBACK_DEF			(0.f)		// Percent
-#define DELAYFXPARAM_WETDRYMIX_DEF			(50.f)		// Percent
-#define DELAYFXPARAM_OUTPUTLEVEL_DEF		(0.f)		// dBFS
-#define DELAYFXPARAM_FEEDBACKENABLED_DEF	(false)		// Disabled
-#define DELAYFXPARAM_PROCESSLFE_DEF			(true)
+// #define DELAYFXPARAM_DELAYTIME_DEF			(0.5f)		// secs
+// #define DELAYFXPARAM_FEEDBACK_DEF			(0.f)		// Percent
+// #define DELAYFXPARAM_WETDRYMIX_DEF			(50.f)		// Percent
+// #define DELAYFXPARAM_OUTPUTLEVEL_DEF		(0.f)		// dBFS
+// #define DELAYFXPARAM_FEEDBACKENABLED_DEF	(false)		// Disabled
+// #define DELAYFXPARAM_PROCESSLFE_DEF			(true)
 
 static const AkReal32 ONEOVER_DELAYFXPARAM_PERCENT_MAX = 0.01f;
 
 struct AkDelayRTPCParams
 {
-	AkReal32	fFeedback;
-	AkReal32	fWetDryMix;
-	AkReal32	fOutputLevel;
-	bool		bFeedbackEnabled;
-	bool		bHasChanged;
+    AkInt16     iCC[16];
+
+    bool        bHasChanged;
 };
 
 struct AkDelayNonRTPCParams
 {
-	AkReal32	fDelayTime;
-	bool		bProcessLFE;
-	bool		bHasChanged;
+    AkInt16     iPort;
+
+    bool        bHasChanged;
 };
 
 struct AkDelayFXParams

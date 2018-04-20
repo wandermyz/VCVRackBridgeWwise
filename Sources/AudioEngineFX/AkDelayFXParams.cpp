@@ -60,13 +60,9 @@ AKRESULT CAkDelayFXParams::Init(
     if ( in_ulBlockSize == 0)
     {
 		// Init default parameters.
-		NonRTPC.fDelayTime = DELAYFXPARAM_DELAYTIME_DEF;
-		RTPC.fFeedback = DELAYFXPARAM_FEEDBACK_DEF * ONEOVER_DELAYFXPARAM_PERCENT_MAX;
-		RTPC.fWetDryMix = DELAYFXPARAM_WETDRYMIX_DEF * ONEOVER_DELAYFXPARAM_PERCENT_MAX;
-		RTPC.fOutputLevel = powf( 10.f, DELAYFXPARAM_OUTPUTLEVEL_DEF * 0.05f );
-		RTPC.bFeedbackEnabled = DELAYFXPARAM_FEEDBACKENABLED_DEF;
+        memset(RTPC.iCC, 0, RACK_CC_COUNT * sizeof(AkInt16));
 		RTPC.bHasChanged = true;
-		NonRTPC.bProcessLFE = DELAYFXPARAM_PROCESSLFE_DEF;
+        NonRTPC.iPort = 0;
 		NonRTPC.bHasChanged = true;
 		return AK_Success;
     }
@@ -87,17 +83,12 @@ AKRESULT CAkDelayFXParams::SetParamsBlock(
 {
 	AKRESULT eResult = AK_Success;
 	AkUInt8 * pParamsBlock = (AkUInt8 *)in_pParamsBlock;
-	NonRTPC.fDelayTime = READBANKDATA( AkReal32, pParamsBlock, in_ulBlockSize );
-	RTPC.fFeedback = READBANKDATA( AkReal32, pParamsBlock, in_ulBlockSize );
-	RTPC.fWetDryMix = READBANKDATA( AkReal32, pParamsBlock, in_ulBlockSize );
-	RTPC.fOutputLevel = AK_DBTOLIN( READBANKDATA( AkReal32, pParamsBlock, in_ulBlockSize ) );
-	RTPC.bFeedbackEnabled = READBANKDATA( bool, pParamsBlock, in_ulBlockSize );
-	NonRTPC.bProcessLFE = READBANKDATA( bool, pParamsBlock, in_ulBlockSize );
+	NonRTPC.iPort = READBANKDATA( AkInt16, pParamsBlock, in_ulBlockSize );
+    for (int i = 0; i < RACK_CC_COUNT; i++)
+    {
+        RTPC.iCC[i] = READBANKDATA( AkInt16, pParamsBlock, in_ulBlockSize );
+    }
 	CHECKBANKDATASIZE( in_ulBlockSize, eResult );
-
-	// Range translation
-	RTPC.fFeedback *= ONEOVER_DELAYFXPARAM_PERCENT_MAX;					// From percentage to linear gain
-	RTPC.fWetDryMix *= ONEOVER_DELAYFXPARAM_PERCENT_MAX;				// From percentage to linear gain
 
 	RTPC.bHasChanged = true;
 	NonRTPC.bHasChanged = true;
@@ -113,47 +104,23 @@ AKRESULT CAkDelayFXParams::SetParam(
 {
 	AKRESULT eResult = AK_Success;
 
-	switch ( in_ParamID )
-	{
-	case AK_DELAYFXPARAM_DELAYTIME_ID:	
-		NonRTPC.fDelayTime = *(AkReal32*)(in_pValue);
+    if (in_ParamID == AK_DELAYFXPARAM_PORT_ID)
+    {
+		NonRTPC.iPort = *(AkInt16*)(in_pValue);
 		NonRTPC.bHasChanged = true;
-		break;
-	case AK_DELAYFXPARAM_FEEDBACK_ID:	// RTPC
-	{
-		AkReal32 fValue = *(AkReal32*)(in_pValue);
-		fValue = AkClamp( fValue, 0.f, 100.f );
-		RTPC.fFeedback = fValue * ONEOVER_DELAYFXPARAM_PERCENT_MAX;
+    }
+    else if (in_ParamID >= AK_DELAYFXPARAM_CC0_ID && in_ParamID < AK_DELAYFXPARAM_CC0_ID + RACK_CC_COUNT)
+    {
+		AkInt16 iValue = *(AkInt16*)(in_pValue);
+		iValue = AkClamp( iValue, 0, 127 );
+        RTPC.iCC[in_ParamID - AK_DELAYFXPARAM_CC0_ID] = iValue;
 		RTPC.bHasChanged = true;
-		break;
-	}
-	case AK_DELAYFXPARAM_WETDRYMIX_ID:	// RTPC
-	{
-		AkReal32 fValue = *(AkReal32*)(in_pValue);
-		fValue = AkClamp( fValue, 0.f, 100.f );
-		RTPC.fWetDryMix = fValue * ONEOVER_DELAYFXPARAM_PERCENT_MAX;	
-		break;
-	}
-	case AK_DELAYFXPARAM_OUTPUTGAIN_ID:	// RTPC
-	{
-		AkReal32 fValue = *(AkReal32*)(in_pValue);
-		fValue = AkClamp( fValue, -96.3f, 0.f );
-		RTPC.fOutputLevel = powf( 10.f, ( fValue * 0.05f ) ); // Make it a linear value	
-		break;
-	}
-	case AK_DELAYFXPARAM_FEEDBACKENABLED_ID:
-		// Note RTPC parameters are always of type float regardless of property type in XML plugin description
-		RTPC.bFeedbackEnabled = (*(AkReal32*)(in_pValue)) != 0;
-		RTPC.bHasChanged = true;
-		break;
-	case AK_DELAYFXPARAM_PROCESSLFE_ID:
-		NonRTPC.bProcessLFE = *(bool*)(in_pValue);
-		NonRTPC.bHasChanged = true;
-		break;
-	default:
+    }
+    else
+    {
 		AKASSERT(!"Invalid parameter.");
 		eResult = AK_InvalidParameter;
-	}
+    }
 
 	return eResult;
 }

@@ -17,74 +17,226 @@
       </PlatformSupport>
     </PluginInfo>
     <Properties>
-      <Property Name="DelayTime" Type="Real32" DisplayName="Delay Time" DisplayGroup="Delay">
-        <UserInterface Step="0.01" Fine="0.001" Decimals="3"/>
-        <DefaultValue>0.5</DefaultValue>
+      <Property Name="Port" Type="int16" DisplayName="Port" DisplayGroup="Port">
+        <UserInterface Step="1" Fine="1"/>
+        <DefaultValue>1</DefaultValue>
         <AudioEnginePropertyID>0</AudioEnginePropertyID>
         <Restrictions>
           <ValueRestriction>
-            <Range Type="Real32">
-              <Min>0.001</Min>
-              <Max>1</Max>
+            <Range Type="int16">
+              <Min>1</Min>
+              <Max>16</Max>
             </Range>
           </ValueRestriction>
         </Restrictions>
       </Property>
-      <Property Name="FeedbackEnabled" Type="bool" SupportRTPCType="Boolean" ForceRTPCCurveSegmentShape="Constant" DisplayName="Feedback Enable" DisplayGroup="Feedback">
-        <DefaultValue>true</DefaultValue>
-        <AudioEnginePropertyID>4</AudioEnginePropertyID>
-      </Property>
-      <Property Name="Feedback" Type="Real32" SupportRTPCType="Additive" DisplayName="Feedback" DisplayGroup="Feedback">
-        <UserInterface Step="0.5" Fine="0.1" Decimals="1"/>
-        <DefaultValue>15</DefaultValue>
+      <Property Name="CC0" Type="int16" SupportRTPCType="Exclusive" DisplayName="CC 0" DisplayGroup="CC">
+        <UserInterface Step="1" Fine="1"/>
+        <DefaultValue>1</DefaultValue>
         <AudioEnginePropertyID>1</AudioEnginePropertyID>
         <Restrictions>
           <ValueRestriction>
-            <Range Type="Real32">
-              <Min>0</Min>
-              <Max>100</Max>
+            <Range Type="int16">
+              <Min>1</Min>
+              <Max>127</Max>
             </Range>
           </ValueRestriction>
         </Restrictions>
-        <Dependencies>
-          <PropertyDependency Name="FeedbackEnabled" Action="Enable">
-            <Condition>
-              <Enumeration Type="bool">
-                <Value>true</Value>
-              </Enumeration>
-            </Condition>
-          </PropertyDependency>
-        </Dependencies>
       </Property>
-      <Property Name="WetDryMix" Type="Real32" SupportRTPCType="Additive" DisplayName="Wet/Dry Mix" DisplayGroup="Output">
-        <UserInterface Step="0.5" Fine="0.1" Decimals="1"/>
-        <DefaultValue>25</DefaultValue>
+      <Property Name="CC1" Type="int16" SupportRTPCType="Exclusive" DisplayName="CC 1" DisplayGroup="CC">
+        <UserInterface Step="1" Fine="1"/>
+        <DefaultValue>1</DefaultValue>
         <AudioEnginePropertyID>2</AudioEnginePropertyID>
         <Restrictions>
           <ValueRestriction>
-            <Range Type="Real32">
-              <Min>0</Min>
-              <Max>100</Max>
+            <Range Type="int16">
+              <Min>1</Min>
+              <Max>127</Max>
             </Range>
           </ValueRestriction>
         </Restrictions>
       </Property>
-      <Property Name="OutputLevel" Type="Real32" SupportRTPCType="Additive" DataMeaning="Decibels" DisplayName="Output Level" DisplayGroup="Output">
-        <UserInterface Step="0.1" Fine="0.01" Decimals="2"/>
-        <DefaultValue>0</DefaultValue>
+      <Property Name="CC2" Type="int16" SupportRTPCType="Exclusive" DisplayName="CC 2" DisplayGroup="CC">
+        <UserInterface Step="1" Fine="1"/>
+        <DefaultValue>1</DefaultValue>
         <AudioEnginePropertyID>3</AudioEnginePropertyID>
         <Restrictions>
           <ValueRestriction>
-            <Range Type="Real32">
-              <Min>-96.3</Min>
-              <Max>0</Max>
+            <Range Type="int16">
+              <Min>1</Min>
+              <Max>127</Max>
             </Range>
           </ValueRestriction>
         </Restrictions>
       </Property>
-      <Property Name="ProcessLFE" Type="bool" DisplayName="Process LFE" DisplayGroup="Output">
-        <DefaultValue>true</DefaultValue>
+      <Property Name="CC3" Type="int16" SupportRTPCType="Exclusive" DisplayName="CC 3" DisplayGroup="CC">
+        <UserInterface Step="1" Fine="1"/>
+        <DefaultValue>1</DefaultValue>
+        <AudioEnginePropertyID>4</AudioEnginePropertyID>
+        <Restrictions>
+          <ValueRestriction>
+            <Range Type="int16">
+              <Min>1</Min>
+              <Max>127</Max>
+            </Range>
+          </ValueRestriction>
+        </Restrictions>
+      </Property>
+      <Property Name="CC4" Type="int16" SupportRTPCType="Exclusive" DisplayName="CC 4" DisplayGroup="CC">
+        <UserInterface Step="1" Fine="1"/>
+        <DefaultValue>1</DefaultValue>
         <AudioEnginePropertyID>5</AudioEnginePropertyID>
+        <Restrictions>
+          <ValueRestriction>
+            <Range Type="int16">
+              <Min>1</Min>
+              <Max>127</Max>
+            </Range>
+          </ValueRestriction>
+        </Restrictions>
+      </Property>
+      <Property Name="CC5" Type="int16" SupportRTPCType="Exclusive" DisplayName="CC 5" DisplayGroup="CC">
+        <UserInterface Step="1" Fine="1"/>
+        <DefaultValue>1</DefaultValue>
+        <AudioEnginePropertyID>6</AudioEnginePropertyID>
+        <Restrictions>
+          <ValueRestriction>
+            <Range Type="int16">
+              <Min>1</Min>
+              <Max>127</Max>
+            </Range>
+          </ValueRestriction>
+        </Restrictions>
+      </Property>
+      <Property Name="CC6" Type="int16" SupportRTPCType="Exclusive" DisplayName="CC 6" DisplayGroup="CC">
+        <UserInterface Step="1" Fine="1"/>
+        <DefaultValue>1</DefaultValue>
+        <AudioEnginePropertyID>7</AudioEnginePropertyID>
+        <Restrictions>
+          <ValueRestriction>
+            <Range Type="int16">
+              <Min>1</Min>
+              <Max>127</Max>
+            </Range>
+          </ValueRestriction>
+        </Restrictions>
+      </Property>
+      <Property Name="CC7" Type="int16" SupportRTPCType="Exclusive" DisplayName="CC 7" DisplayGroup="CC">
+        <UserInterface Step="1" Fine="1"/>
+        <DefaultValue>1</DefaultValue>
+        <AudioEnginePropertyID>8</AudioEnginePropertyID>
+        <Restrictions>
+          <ValueRestriction>
+            <Range Type="int16">
+              <Min>1</Min>
+              <Max>127</Max>
+            </Range>
+          </ValueRestriction>
+        </Restrictions>
+      </Property>
+      <Property Name="CC8" Type="int16" SupportRTPCType="Exclusive" DisplayName="CC 8" DisplayGroup="CC">
+        <UserInterface Step="1" Fine="1"/>
+        <DefaultValue>1</DefaultValue>
+        <AudioEnginePropertyID>9</AudioEnginePropertyID>
+        <Restrictions>
+          <ValueRestriction>
+            <Range Type="int16">
+              <Min>1</Min>
+              <Max>127</Max>
+            </Range>
+          </ValueRestriction>
+        </Restrictions>
+      </Property>
+      <Property Name="CC9" Type="int16" SupportRTPCType="Exclusive" DisplayName="CC 9" DisplayGroup="CC">
+        <UserInterface Step="1" Fine="1"/>
+        <DefaultValue>1</DefaultValue>
+        <AudioEnginePropertyID>10</AudioEnginePropertyID>
+        <Restrictions>
+          <ValueRestriction>
+            <Range Type="int16">
+              <Min>1</Min>
+              <Max>127</Max>
+            </Range>
+          </ValueRestriction>
+        </Restrictions>
+      </Property>
+      <Property Name="CC10" Type="int16" SupportRTPCType="Exclusive" DisplayName="CC 10" DisplayGroup="CC">
+        <UserInterface Step="1" Fine="1"/>
+        <DefaultValue>1</DefaultValue>
+        <AudioEnginePropertyID>11</AudioEnginePropertyID>
+        <Restrictions>
+          <ValueRestriction>
+            <Range Type="int16">
+              <Min>1</Min>
+              <Max>127</Max>
+            </Range>
+          </ValueRestriction>
+        </Restrictions>
+      </Property>
+      <Property Name="CC11" Type="int16" SupportRTPCType="Exclusive" DisplayName="CC 11" DisplayGroup="CC">
+        <UserInterface Step="1" Fine="1"/>
+        <DefaultValue>1</DefaultValue>
+        <AudioEnginePropertyID>12</AudioEnginePropertyID>
+        <Restrictions>
+          <ValueRestriction>
+            <Range Type="int16">
+              <Min>1</Min>
+              <Max>127</Max>
+            </Range>
+          </ValueRestriction>
+        </Restrictions>
+      </Property>
+      <Property Name="CC12" Type="int16" SupportRTPCType="Exclusive" DisplayName="CC 12" DisplayGroup="CC">
+        <UserInterface Step="1" Fine="1"/>
+        <DefaultValue>1</DefaultValue>
+        <AudioEnginePropertyID>13</AudioEnginePropertyID>
+        <Restrictions>
+          <ValueRestriction>
+            <Range Type="int16">
+              <Min>1</Min>
+              <Max>127</Max>
+            </Range>
+          </ValueRestriction>
+        </Restrictions>
+      </Property>
+      <Property Name="CC13" Type="int16" SupportRTPCType="Exclusive" DisplayName="CC 13" DisplayGroup="CC">
+        <UserInterface Step="1" Fine="1"/>
+        <DefaultValue>1</DefaultValue>
+        <AudioEnginePropertyID>14</AudioEnginePropertyID>
+        <Restrictions>
+          <ValueRestriction>
+            <Range Type="int16">
+              <Min>1</Min>
+              <Max>127</Max>
+            </Range>
+          </ValueRestriction>
+        </Restrictions>
+      </Property>
+      <Property Name="CC14" Type="int16" SupportRTPCType="Exclusive" DisplayName="CC 14" DisplayGroup="CC">
+        <UserInterface Step="1" Fine="1"/>
+        <DefaultValue>1</DefaultValue>
+        <AudioEnginePropertyID>15</AudioEnginePropertyID>
+        <Restrictions>
+          <ValueRestriction>
+            <Range Type="int16">
+              <Min>1</Min>
+              <Max>127</Max>
+            </Range>
+          </ValueRestriction>
+        </Restrictions>
+      </Property>
+      <Property Name="CC15" Type="int16" SupportRTPCType="Exclusive" DisplayName="CC 15" DisplayGroup="CC">
+        <UserInterface Step="1" Fine="1"/>
+        <DefaultValue>1</DefaultValue>
+        <AudioEnginePropertyID>16</AudioEnginePropertyID>
+        <Restrictions>
+          <ValueRestriction>
+            <Range Type="int16">
+              <Min>1</Min>
+              <Max>127</Max>
+            </Range>
+          </ValueRestriction>
+        </Restrictions>
       </Property>
     </Properties>
   </EffectPlugin>

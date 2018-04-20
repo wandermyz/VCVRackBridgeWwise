@@ -72,20 +72,22 @@ AKRESULT CAkVCVRackBridgeFX::Init(	AK::IAkPluginMemAlloc *			in_pAllocator,		///
     }
     client = new BridgeClient();
     client->setSampleRate(in_rFormat.uSampleRate);
-    client->setPort(0);
 
 	m_pParams = (CAkDelayFXParams*)in_pParams;
 	m_pAllocator = in_pAllocator;
  
-	m_FXState.Setup( m_pParams, in_rFormat.uSampleRate );
-	AKRESULT eResult = m_FXState.InitDelay( in_pAllocator, m_pParams, in_rFormat.channelConfig );
-	m_FXState.ComputeTailLength( m_pParams->RTPC.bFeedbackEnabled, m_pParams->RTPC.fFeedback );
+    client->setPort(m_pParams->NonRTPC.iPort - 1);
+    for (int i = 0; i < RACK_CC_COUNT; i++)
+    {
+        client->setParam(i, m_pParams->RTPC.iCC[i]);
+    }
+
 	m_pParams->NonRTPC.bHasChanged = false; 
 	m_pParams->RTPC.bHasChanged = false;
 
 	AK_PERF_RECORDING_RESET();
 
-	return eResult;
+	return AK_Success;
 }
 
 /// Effect termination.
@@ -97,7 +99,6 @@ AKRESULT CAkVCVRackBridgeFX::Term( AK::IAkPluginMemAlloc * in_pAllocator )
         client = nullptr;
     }
 
-	m_FXState.TermDelay( in_pAllocator );
 	AK_PLUGIN_DELETE( in_pAllocator, this ); /// Effect must delete itself
 	return AK_Success;
 }
@@ -105,7 +106,6 @@ AKRESULT CAkVCVRackBridgeFX::Term( AK::IAkPluginMemAlloc * in_pAllocator )
 /// Actions to perform on FX reset (example on bypass)
 AKRESULT CAkVCVRackBridgeFX::Reset( )
 {
-	m_FXState.ResetDelay();
 	return AK_Success;
 }
 
@@ -125,6 +125,21 @@ void CAkVCVRackBridgeFX::Execute(
     AkAudioBuffer *							io_pOutBuffer		///< Output audio buffer data structure
 )
 {
+    if ( AK_EXPECT_FALSE( m_pParams->NonRTPC.bHasChanged ) ) 
+	{
+        client->setPort(m_pParams->NonRTPC.iPort - 1);
+        m_pParams->NonRTPC.bHasChanged = false;
+	}
+
+	if ( AK_EXPECT_FALSE( m_pParams->RTPC.bHasChanged ) )
+	{
+        for (int i = 0; i < RACK_CC_COUNT; i++)
+        {
+            client->setParam(i, m_pParams->RTPC.iCC[i]);
+        }
+        m_pParams->RTPC.bHasChanged = false;
+	}
+
     assert( io_pInBuffer->NumChannels() == io_pOutBuffer->NumChannels() );
     const AkUInt32 uNumChannels = io_pInBuffer->NumChannels();
     AkUInt32 uFramesConsumed = 0; // Track how much data is consumed from input buffer
@@ -145,11 +160,7 @@ void CAkVCVRackBridgeFX::Execute(
             input[j * BRIDGE_INPUTS + i] = pInBuf[j];
         }
     }
-    // for (int i = 0; i < validFrames; i++) {
-    //     for (int c = 0; c < BRIDGE_INPUTS; c++) {
-    //         input[BRIDGE_INPUTS*i + c] = inputs[c][i];
-    //     }
-    // }
+
     // Process audio
     client->processStream(input, output, validFrames);
 
@@ -163,37 +174,6 @@ void CAkVCVRackBridgeFX::Execute(
             pfOutBuf[j] = output[j * BRIDGE_OUTPUTS + i];
         }
     }
-    // for (int i = 0; i < validFrames; i++) {
-    //     // To prevent the DAW from pausing the processReplacing() calls, add a noise floor so the DAW thinks audio is still being processed.
-    //     float r = (float) rand() / RAND_MAX;
-    //     r = 1.f - 2.f * r;
-    //     // Ableton Live's threshold is 1e-5 or -100dB
-    //     r *= 1.5e-5f; // -96dB
-    //     for (int c = 0; c < BRIDGE_OUTPUTS; c++) {
-    //         outputs[c][i] = output[BRIDGE_OUTPUTS*i + c] + r;
-    //     }
-    // }
-
-
-    // for ( AkUInt32 i = 0; i < uNumChannels; i++ )
-    // {
-    //     AkReal32 * AK_RESTRICT pInBuf = (AkReal32 * AK_RESTRICT) io_pInBuffer->GetChannel( i ) + in_uInOffset; 
-    //     AkReal32 * AK_RESTRICT pfOutBuf = (AkReal32 * AK_RESTRICT) io_pOutBuffer->GetChannel( i ) + io_pOutBuffer->uValidFrames;
-
-    //     uFramesConsumed = 0; // Reset for every channel
-    //     uFramesProduced = 0; 
-
-    //     while ( (uFramesConsumed < io_pInBuffer->uValidFrames) && (uFramesProduced < io_pOutBuffer->MaxFrames()) )
-    //     {
-    //         *pfOutBuf = *pInBuf;
-
-    //         pInBuf++;
-    //         uFramesConsumed++;
-
-    //         pfOutBuf++;
-    //         uFramesProduced++;
-    //     }
-    // }
 
     uFramesConsumed += validFrames;
     uFramesProduced += validFrames;
@@ -216,36 +196,3 @@ AKRESULT CAkVCVRackBridgeFX::TimeSkip(
     return AK_DataReady;
 }
 
-/// Effect plug-in DSP processing
-void CAkVCVRackBridgeFX::Execute( AkAudioBuffer * io_pBuffer )
-{
-	for ( AkUInt32 i = 0; i < 2; ++i ) 
-    {
-        AkReal32 * AK_RESTRICT pfChan = (AkReal32 * AK_RESTRICT) io_pBuffer->GetChannel(i);
-        for (int i = 0; i < io_pBuffer->uValidFrames; i++)
-        {
-            pfChan[i] = 0;
-        }
-    }
-    return;
-
-	if ( AK_EXPECT_FALSE( m_pParams->NonRTPC.bHasChanged ) ) 
-	{
-		AKRESULT eResult = m_FXState.InitDelay( m_pAllocator, m_pParams, io_pBuffer->GetChannelConfig() );
-		if ( eResult != AK_Success )
-			return; // passthrough
-		m_FXState.ResetDelay();
-		m_pParams->NonRTPC.bHasChanged = false; 
-	}
-
-	if ( AK_EXPECT_FALSE( m_pParams->RTPC.bHasChanged ) )
-	{
-		m_FXState.ComputeTailLength( m_pParams->RTPC.bFeedbackEnabled, m_pParams->RTPC.fFeedback );
-		m_pParams->RTPC.bHasChanged = false;
-	}
-	
-	AK_PERF_RECORDING_START( "Delay", 25, 30 );
-	// Execute DSP processing synchronously here
-	m_FXState.Process( io_pBuffer, m_pParams );
-	AK_PERF_RECORDING_STOP( "Delay", 25, 30 );
-}
