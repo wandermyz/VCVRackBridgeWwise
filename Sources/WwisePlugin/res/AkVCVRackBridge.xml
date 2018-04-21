@@ -24,8 +24,8 @@
         <Restrictions>
           <ValueRestriction>
             <Range Type="int32">
-              <Min>0</Min>
-              <Max>15</Max>
+              <Min>1</Min>
+              <Max>l6</Max>
             </Range>
           </ValueRestriction>
         </Restrictions>
