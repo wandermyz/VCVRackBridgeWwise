@@ -18,16 +18,29 @@
     </PluginInfo>
     <Properties>
       <Property Name="Port" Type="int32" DisplayName="Port" DisplayGroup="Port">
-        <UserInterface Step="1" Fine="1" />
         <DefaultValue>1</DefaultValue>
         <AudioEnginePropertyID>0</AudioEnginePropertyID>
         <Restrictions>
-          <ValueRestriction>
-            <Range Type="int32">
-              <Min>1</Min>
-              <Max>l6</Max>
-            </Range>
-          </ValueRestriction>
+            <ValueRestriction>
+                <Enumeration Type="int32">
+                    <Value DisplayName="1">1</Value>
+                    <Value DisplayName="2">2</Value>
+                    <Value DisplayName="3">3</Value>
+                    <Value DisplayName="4">4</Value>
+                    <Value DisplayName="5">5</Value>
+                    <Value DisplayName="6">6</Value>
+                    <Value DisplayName="7">7</Value>
+                    <Value DisplayName="8">8</Value>
+                    <Value DisplayName="9">9</Value>
+                    <Value DisplayName="10">10</Value>
+                    <Value DisplayName="11">11</Value>
+                    <Value DisplayName="12">12</Value>
+                    <Value DisplayName="13">13</Value>
+                    <Value DisplayName="14">14</Value>
+                    <Value DisplayName="15">15</Value>
+                    <Value DisplayName="16">16</Value>
+                </Enumeration>
+            </ValueRestriction>
         </Restrictions>
       </Property>
       <Property Name="CC0" Type="Real32" SupportRTPCType="Exclusive" DisplayName="CC 0" DisplayGroup="CC">

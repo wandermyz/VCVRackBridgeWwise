@@ -112,7 +112,7 @@ AKRESULT CAkDelayFXParams::SetParam(
     else if (in_ParamID >= AK_DELAYFXPARAM_CC0_ID && in_ParamID < AK_DELAYFXPARAM_CC0_ID + RACK_CC_COUNT)
     {
 		AkReal32 iValue = *(AkReal32*)(in_pValue);
-		iValue = AkClamp( iValue, 0.0f, 127.0f );
+		iValue = AkClamp( iValue, 0.0f, 1.0f );
         RTPC.iCC[in_ParamID - AK_DELAYFXPARAM_CC0_ID] = iValue;
 		RTPC.bHasChanged = true;
     }

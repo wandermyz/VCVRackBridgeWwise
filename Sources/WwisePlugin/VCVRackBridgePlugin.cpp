@@ -139,7 +139,7 @@ bool VCVRackBridgePlugin::GetBankParameters( const GUID & in_guidPlatform, AK::W
 	// in_pDataWriter->WriteBool( varProp.boolVal != 0 );
 
 	m_pPSet->GetValue( in_guidPlatform, szPort, varProp );
-	in_pDataWriter->WriteReal32( varProp.fltVal );
+	in_pDataWriter->WriteInt32( varProp.intVal );
 	m_pPSet->GetValue( in_guidPlatform, szCC0, varProp );
 	in_pDataWriter->WriteReal32( varProp.fltVal );
 	m_pPSet->GetValue( in_guidPlatform, szCC1, varProp );
