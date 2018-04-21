@@ -60,7 +60,7 @@ AKRESULT CAkDelayFXParams::Init(
     if ( in_ulBlockSize == 0)
     {
 		// Init default parameters.
-        memset(RTPC.iCC, 0, RACK_CC_COUNT * sizeof(AkInt16));
+        memset(RTPC.iCC, 0, RACK_CC_COUNT * sizeof(AkReal32));
 		RTPC.bHasChanged = true;
         NonRTPC.iPort = 0;
 		NonRTPC.bHasChanged = true;
@@ -83,10 +83,10 @@ AKRESULT CAkDelayFXParams::SetParamsBlock(
 {
 	AKRESULT eResult = AK_Success;
 	AkUInt8 * pParamsBlock = (AkUInt8 *)in_pParamsBlock;
-	NonRTPC.iPort = READBANKDATA( AkInt16, pParamsBlock, in_ulBlockSize );
+	NonRTPC.iPort = READBANKDATA( AkInt32, pParamsBlock, in_ulBlockSize );
     for (int i = 0; i < RACK_CC_COUNT; i++)
     {
-        RTPC.iCC[i] = READBANKDATA( AkInt16, pParamsBlock, in_ulBlockSize );
+        RTPC.iCC[i] = READBANKDATA( AkReal32, pParamsBlock, in_ulBlockSize );
     }
 	CHECKBANKDATASIZE( in_ulBlockSize, eResult );
 
@@ -106,13 +106,13 @@ AKRESULT CAkDelayFXParams::SetParam(
 
     if (in_ParamID == AK_DELAYFXPARAM_PORT_ID)
     {
-		NonRTPC.iPort = *(AkInt16*)(in_pValue);
+		NonRTPC.iPort = *(AkInt32*)(in_pValue);
 		NonRTPC.bHasChanged = true;
     }
     else if (in_ParamID >= AK_DELAYFXPARAM_CC0_ID && in_ParamID < AK_DELAYFXPARAM_CC0_ID + RACK_CC_COUNT)
     {
-		AkInt16 iValue = *(AkInt16*)(in_pValue);
-		iValue = AkClamp( iValue, 0, 127 );
+		AkReal32 iValue = *(AkReal32*)(in_pValue);
+		iValue = AkClamp( iValue, 0.0f, 127.0f );
         RTPC.iCC[in_ParamID - AK_DELAYFXPARAM_CC0_ID] = iValue;
 		RTPC.bHasChanged = true;
     }

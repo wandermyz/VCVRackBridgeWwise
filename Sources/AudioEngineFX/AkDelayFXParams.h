@@ -44,14 +44,14 @@ static const AkReal32 ONEOVER_DELAYFXPARAM_PERCENT_MAX = 0.01f;
 
 struct AkDelayRTPCParams
 {
-    AkInt16     iCC[16];
+    AkReal32     iCC[16];
 
     bool        bHasChanged;
 };
 
 struct AkDelayNonRTPCParams
 {
-    AkInt16     iPort;
+    AkInt32     iPort;
 
     bool        bHasChanged;
 };
